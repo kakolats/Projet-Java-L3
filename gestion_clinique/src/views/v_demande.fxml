@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="415.0" prefWidth="600.0" style="-fx-background-color: #34EAE1;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.DemandeController">
+   <children>
+      <DatePicker fx:id="dfDate" layoutX="123.0" layoutY="103.0" prefHeight="25.0" prefWidth="252.0" />
+      <ComboBox fx:id="cboType" layoutX="123.0" layoutY="162.0" onAction="#handleTransition" prefHeight="25.0" prefWidth="252.0" />
+      <Text layoutX="67.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type" />
+      <ComboBox fx:id="cboTypePrestation" layoutX="123.0" layoutY="241.0" prefHeight="25.0" prefWidth="252.0" />
+      <Button layoutX="468.0" layoutY="324.0" mnemonicParsing="false" onAction="#handleDemande" prefHeight="39.0" prefWidth="86.0" text="Demande">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Text layoutX="53.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Specificité" />
+      <Text layoutX="68.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
+      <ComboBox fx:id="cboTypeConsultation" layoutX="123.0" layoutY="241.0" prefHeight="25.0" prefWidth="252.0" />
+      <Button layoutX="356.0" layoutY="324.0" mnemonicParsing="false" onAction="#handleAnnulation" prefHeight="39.0" prefWidth="86.0" text="Annuler">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Text layoutX="143.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DEMANDE DE RENDEZ-VOUS">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
