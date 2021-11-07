@@ -6,8 +6,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="497.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="views.HomeController">
+<AnchorPane id="AnchorPane" prefHeight="497.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.HomeController">
    <children>
       <BorderPane prefHeight="497.0" prefWidth="600.0" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -24,10 +23,11 @@
          <left>
             <AnchorPane prefHeight="408.0" prefWidth="151.0" style="-fx-background-color: #456666;" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutX="-2.0" layoutY="55.0" mnemonicParsing="false" onAction="#handleLoadViewDemande" prefHeight="32.0" prefWidth="158.0" text="Demande de RDV" />
-                  <Button layoutX="-1.0" layoutY="107.0" mnemonicParsing="false" onAction="#handleLoadViewListeRdv" prefHeight="32.0" prefWidth="157.0" text="Liste de Rdv" />
-                  <Button layoutX="-2.0" layoutY="154.0" mnemonicParsing="false" onAction="#handleLoadViewListeConsultations" prefHeight="32.0" prefWidth="158.0" text="Liste de consultations" />
+                  <Button layoutY="20.0" mnemonicParsing="false" onAction="#handleLoadViewDemande" prefHeight="32.0" prefWidth="158.0" text="Demande de RDV" />
+                  <Button layoutX="1.0" layoutY="60.0" mnemonicParsing="false" onAction="#handleLoadViewListeRdv" prefHeight="32.0" prefWidth="157.0" text="Liste de Rdv" />
+                  <Button layoutX="1.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleLoadViewListeConsultations" prefHeight="32.0" prefWidth="158.0" text="Liste de consultations" />
                   <Button layoutY="316.0" mnemonicParsing="false" onAction="#handleDeconnexion" prefHeight="32.0" prefWidth="156.0" text="Deconnexion" />
+                  <Button layoutX="1.0" layoutY="141.0" mnemonicParsing="false" onAction="#handleLoadViewListePrestations" prefHeight="32.0" prefWidth="158.0" text="Liste de prestations" />
                </children>
             </AnchorPane>
          </left>

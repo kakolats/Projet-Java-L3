@@ -52,7 +52,7 @@ public class HomeController implements Initializable {
 
     @FXML
     private void handleLoadViewListeRdv(ActionEvent event) {
-        loadView("v_listeConsultation");
+        loadView("v_listeRendezVous");
     }
 
     @FXML
@@ -61,6 +61,10 @@ public class HomeController implements Initializable {
 
     @FXML
     private void handleDeconnexion(ActionEvent event) {
+    }
+
+    @FXML
+    private void handleLoadViewListePrestations(ActionEvent event) {
     }
     
 }

@@ -9,21 +9,21 @@ package entities;
  *
  * @author HP
  */
-public class TypePrestation {
-    private int id;
-    private String libelle;
+public class TypePrestation extends TypeService {
     
-    public TypePrestation(){
-        
+    private final String TYPE="Prestation";
+    
+    public TypePrestation() {
     }
 
     public TypePrestation(int id, String libelle) {
-        this.id = id;
-        this.libelle = libelle;
+        super(id, libelle);
+        this.type=TYPE;
     }
 
     public TypePrestation(String libelle) {
-        this.libelle = libelle;
+        super(libelle);
+        this.type=TYPE;
     }
 
     public int getId() {
@@ -41,6 +41,16 @@ public class TypePrestation {
     public void setLibelle(String libelle) {
         this.libelle = libelle;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    
     
     @Override
     public String toString() {

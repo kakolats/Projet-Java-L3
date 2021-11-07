@@ -18,6 +18,11 @@ public class Medecin extends User {
         
     }
 
+    public Medecin(int id, String nomComplet) {
+        super(id, nomComplet);
+    }
+    
+
     //Insertion
     public Medecin(String nci, String specialite, String login, String password, String role, String nomComplet) {
         super(login, password, role, nomComplet);
@@ -46,6 +51,11 @@ public class Medecin extends User {
 
     public void setSpecialite(String specialite) {
         this.specialite = specialite;
+    }
+
+    @Override
+    public String toString() {
+        return this.nomComplet;
     }
     
     

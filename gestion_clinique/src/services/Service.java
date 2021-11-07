@@ -5,16 +5,20 @@
  */
 package services;
 
+import dao.MedecinDao;
 import dao.PatientDao;
 import dao.RendezVousDao;
 import dao.TypeConsultationDao;
 import dao.TypePrestationDao;
 import dao.UserDao;
+import entities.Medecin;
 import entities.Patient;
 import entities.RendezVous;
 import entities.TypeConsultation;
 import entities.TypePrestation;
+import entities.TypeService;
 import entities.User;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,6 +28,7 @@ import java.util.List;
 public class Service implements IService {
     
     UserDao daoUser=new UserDao();
+    MedecinDao daoMedecin=new MedecinDao();
     PatientDao daoPatient=new PatientDao();
     RendezVousDao daoRendezVous=new RendezVousDao();
     TypePrestationDao daoTypePrestation=new TypePrestationDao();
@@ -52,6 +57,44 @@ public class Service implements IService {
     @Override
     public int addRendezVous(RendezVous rdv) {
         return daoRendezVous.insert(rdv);
+    }
+
+    @Override
+    public List<RendezVous> searchRendezVousByPatient(int idPatient) {
+        List<RendezVous> rendezVous=daoRendezVous.findByIdPatient(idPatient);
+        for(RendezVous rdv:rendezVous){
+            if(rdv.getTypeS().getType().equals("Consultation")){
+                String libelle=daoTypeConsultation.findLibelleById(rdv.getTypeS().getId());
+                rdv.getTypeS().setLibelle(libelle);
+            }
+            if(rdv.getTypeS().getType().equals("Prestation")){
+                String libelle=daoTypePrestation.findLibelleById(rdv.getTypeS().getId());
+                rdv.getTypeS().setLibelle(libelle);
+            }
+        }
+        
+        return rendezVous;
+    }
+
+    @Override
+    public List<RendezVous> showAllRendezVousEnCours() {
+        List<RendezVous> rendezVous=daoRendezVous.findAll();
+        for(RendezVous rdv:rendezVous){
+            if(rdv.getTypeS().getType().equals("Consultation")){
+                String libelle=daoTypeConsultation.findLibelleById(rdv.getTypeS().getId());
+                rdv.getTypeS().setLibelle(libelle);
+            }
+            if(rdv.getTypeS().getType().equals("Prestation")){
+                String libelle=daoTypePrestation.findLibelleById(rdv.getTypeS().getId());
+                rdv.getTypeS().setLibelle(libelle);
+            }
+        }
+        return rendezVous;
+    }
+
+    @Override
+    public List<Medecin> showMedecinsByTypeConsultation(TypeService type) {
+        return daoMedecin.findByTypeConsultation(type);
     }
     
 }

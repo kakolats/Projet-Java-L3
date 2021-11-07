@@ -5,10 +5,12 @@
  */
 package services;
 
+import entities.Medecin;
 import entities.Patient;
 import entities.RendezVous;
 import entities.TypeConsultation;
 import entities.TypePrestation;
+import entities.TypeService;
 import entities.User;
 import java.util.List;
 
@@ -23,4 +25,7 @@ public interface IService {
     public List<TypeConsultation> showAllTypeConsultation();
     public List<TypePrestation> showAllTypePrestation();
     public int addRendezVous(RendezVous rdv);
+    public List<RendezVous> searchRendezVousByPatient(int idPatient);
+    public List<RendezVous> showAllRendezVousEnCours();
+    public List<Medecin> showMedecinsByTypeConsultation(TypeService type);
 }

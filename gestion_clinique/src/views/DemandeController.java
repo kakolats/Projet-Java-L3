@@ -9,6 +9,8 @@ import entities.Patient;
 import entities.RendezVous;
 import entities.TypeConsultation;
 import entities.TypePrestation;
+import entities.TypeService;
+import entities.User;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -17,12 +19,14 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.scene.text.Text;
 import services.Service;
 
 /**
@@ -33,17 +37,17 @@ import services.Service;
 public class DemandeController implements Initializable {
 
     private Service service=new Service();
-    ObservableList<TypePrestation> prestations;
-    ObservableList<TypeConsultation> consultations;
+    ObservableList<TypeService> prestations;
+    ObservableList<TypeService> consultations;
     
     @FXML
     private DatePicker dfDate;
     @FXML
     private ComboBox<String> cboType;
     @FXML
-    private ComboBox<TypePrestation> cboTypePrestation;
+    private ComboBox<TypeService> cboTypeService;
     @FXML
-    private ComboBox<TypeConsultation> cboTypeConsultation;
+    private Text txtError;
     
     
 
@@ -54,76 +58,62 @@ public class DemandeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         loadComboType(cboType);
-        loadComboBoxTypePrestation(cboTypePrestation);
-        loadComboBoxTypeConsultation(cboTypeConsultation); 
+        loadComboBoxTypeConsultation(cboTypeService);
         dateHandler(dfDate);
+        System.out.println(Date.valueOf(dfDate.getValue())==null);
     }  
     
-    private void loadComboBoxTypePrestation(ComboBox<TypePrestation> cbo){
+    private void loadComboBoxTypePrestation(ComboBox<TypeService> cbo){
         prestations=FXCollections.observableArrayList(service.showAllTypePrestation());
         cbo.setItems(prestations);
-        cbo.setVisible(false);
-    }
+        cbo.getSelectionModel().selectFirst();    }
     
-    private void loadComboBoxTypeConsultation(ComboBox<TypeConsultation> cbo){
+    private void loadComboBoxTypeConsultation(ComboBox<TypeService> cbo){
         consultations=FXCollections.observableArrayList(service.showAllTypeConsultation());
         cbo.setItems(consultations);
-        cbo.setVisible(false);
-    }
+        cbo.getSelectionModel().selectFirst();    }
+    
     
     
     
     
     @FXML
     private void handleDemande(ActionEvent event) {
-        TypePrestation typeP=cboTypePrestation.getSelectionModel().getSelectedItem();
-        TypeConsultation typeC=cboTypeConsultation.getSelectionModel().getSelectedItem();
+        String type=cboType.getSelectionModel().getSelectedItem();
+        TypeService typeS=cboTypeService.getSelectionModel().getSelectedItem();
         ZoneId defaultZoneId = ZoneId.systemDefault();
         Date date = Date.valueOf(dfDate.getValue());
         Patient patient=new Patient(ConnexionController.getCtrl().getUser().getId());
-        
-        if(typeP!=null){            
-            RendezVous rdv=new RendezVous(0,date,typeP,patient);
-            int id=service.addRendezVous(rdv); 
+        if(type.equals("Consultation")){
+            TypeConsultation typeC=new TypeConsultation(typeS.getId(),typeS.getLibelle());
+            RendezVous rdv=new RendezVous(date,typeC,patient);
+            service.addRendezVous(rdv);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Demande de rendez-vous ajoutee avec succes");
-            alert.setContentText("Demande reussie ");
+            alert.setTitle("Demande");
+            alert.setContentText("Demande effectuee avec succes");
             alert.show();
-        }else{
-            if(typeC!=null){
-                RendezVous rdv=new RendezVous(0,date,typeC,patient);
-                int id=service.addRendezVous(rdv); 
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Demande de rendez-vous ajoutee avec succes");
-                alert.setContentText("Demande reussie ");
-                alert.show();
-            }
+        }else if(type.equals("Prestation")){
+            TypePrestation typeP=new TypePrestation(typeS.getId(),typeS.getLibelle());
+            RendezVous rdv=new RendezVous(date,typeP,patient);
+            service.addRendezVous(rdv);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Demande");
+            alert.setContentText("Demande effectuee avec succes");
+            alert.show();
+        }
+        
         }
         
         
-    }
+    
     
     private void loadComboType(ComboBox<String> cboType){ 
         cboType.getItems().add("Consultation");
         cboType.getItems().add("Prestation");
+        cboType.getSelectionModel().selectFirst();
     }
 
-    @FXML
-    private void handleTransition(ActionEvent event) {
-        String type=cboType.getSelectionModel().getSelectedItem();
-        if(type.equals("Consultation")){
-            cboTypePrestation.setDisable(true);
-            cboTypePrestation.setVisible(false);
-            cboTypeConsultation.setDisable(false);
-            cboTypeConsultation.setVisible(true);
-        }
-        if(type.equals("Prestation")){
-            cboTypeConsultation.setDisable(true);
-            cboTypeConsultation.setVisible(false);
-            cboTypePrestation.setDisable(false);
-            cboTypePrestation.setVisible(true);
-        }
-    }
+    
 
     @FXML
     private void handleAnnulation(ActionEvent event) {
@@ -139,7 +129,19 @@ public class DemandeController implements Initializable {
 
             setDisable(empty || date.compareTo(today) < 0 );
         }
-        });  
+        }); 
+        //dp.setValue(LocalDate.now());
+    }
+
+    @FXML
+    private void handleTransition(Event event) {
+        String type=cboType.getSelectionModel().getSelectedItem();
+        if(type.equals("Consultation")){
+            loadComboBoxTypeConsultation(cboTypeService);
+        }
+        if(type.equals("Prestation")){
+            loadComboBoxTypePrestation(cboTypeService);
+        }
     }
     
 }

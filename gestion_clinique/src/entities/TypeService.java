@@ -9,23 +9,12 @@ package entities;
  *
  * @author HP
  */
-public class TypeConsultation extends TypeService {
+public class TypeService {
+    protected int id;
+    protected String libelle;
+    protected String type;
     
-    private final String TYPE="Consultation";
-
-    public TypeConsultation() {
-    }
-
-    public TypeConsultation(int id, String libelle) {
-        super(id, libelle);
-        this.type=TYPE;
-    }
-
-    public TypeConsultation(String libelle) {
-        super(libelle);
-        this.type=TYPE;
-    }
-
+    
     public int getId() {
         return id;
     }
@@ -49,13 +38,27 @@ public class TypeConsultation extends TypeService {
     public void setType(String type) {
         this.type = type;
     }
+    
 
-    
-    
-    @Override
-    public String toString() {
-        return  libelle ;
+    public TypeService() {
+    }
+
+    public TypeService(int id, String libelle) {
+        this.id = id;
+        this.libelle = libelle;
+    }
+
+    public TypeService(String libelle) {
+        this.libelle = libelle;
     }
     
+    public TypeService(int id){
+        this.id=id;
+    }
+    
+    @Override
+    public String toString(){
+        return type+" "+libelle;
+    }
     
 }

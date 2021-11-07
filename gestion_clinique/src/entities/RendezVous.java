@@ -13,30 +13,63 @@ import java.sql.Date;
  */
 public class RendezVous {
     private int id;
-    private int statut;
+    private String statut;
     private Date date;
     private TypeConsultation typeC;
     private TypePrestation typeP;
+    private TypeService typeS;
     private Patient patient;
 
     public RendezVous() {
     }
 
-    public RendezVous(int statut, Date date, TypeConsultation typeC, Patient patient) {
+    public RendezVous(int id, String statut, Date date, TypeService typeS, Patient patient) {
+        this.id = id;
+        this.statut = statut;
+        this.date = date;
+        this.typeS = typeS;
+        this.patient = patient;
+    }
+
+    public RendezVous(String statut, Date date,TypeService typeS, Patient patient) {
+        this.statut = statut;
+        this.date = date;
+        this.typeS = typeS;
+        this.patient = patient;
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public RendezVous(String statut, Date date, TypeConsultation typeC, Patient patient) {
         this.statut = statut;
         this.date = date;
         this.typeC = typeC;
         this.patient = patient;
     }
 
-    public RendezVous(int statut, Date date, TypePrestation typeCo, Patient patient) {
+    public RendezVous(String statut, Date date, TypePrestation typeCo, Patient patient) {
         this.statut = statut;
         this.date = date;
         this.typeP = typeCo;
         this.patient = patient;
     }
 
-    public RendezVous(int id, int statut, Date date, TypePrestation typeCo, Patient patient) {
+    public RendezVous(int id, String statut, Date date, TypePrestation typeCo, Patient patient) {
         this.id = id;
         this.statut = statut;
         this.date = date;
@@ -44,12 +77,29 @@ public class RendezVous {
         this.patient = patient;
     }
 
-    public RendezVous(int id, int statut, Date date, TypeConsultation typeC, Patient patient) {
+    public RendezVous(int id, String statut, Date date, TypeConsultation typeC, Patient patient) {
         this.id = id;
         this.statut = statut;
         this.date = date;
         this.typeC = typeC;
         this.patient = patient;
+    }
+
+    public RendezVous(Date date, TypeConsultation typeC, Patient patient) {
+        this.date = date;
+        this.typeC = typeC;
+        this.patient = patient;
+    }
+
+    public RendezVous(Date date, TypePrestation typeP, Patient patient) {
+        this.date = date;
+        this.typeP = typeP;
+        this.patient = patient;
+    }
+
+    public RendezVous(String statut, Date date) {
+        this.statut = statut;
+        this.date = date;
     }
 
     
@@ -64,11 +114,11 @@ public class RendezVous {
         this.id = id;
     }
 
-    public int getStatut() {
+    public String getStatut() {
         return statut;
     }
 
-    public void setStatut(int statut) {
+    public void setStatut(String statut) {
         this.statut = statut;
     }
 
@@ -102,6 +152,14 @@ public class RendezVous {
 
     public void setPatient(Patient patient) {
         this.patient = patient;
+    }
+
+    public TypeService getTypeS() {
+        return typeS;
+    }
+
+    public void setTypeS(TypeService typeS) {
+        this.typeS = typeS;
     }
     
     

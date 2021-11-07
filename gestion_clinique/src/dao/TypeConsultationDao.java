@@ -21,6 +21,7 @@ public class TypeConsultationDao implements IDao<TypeConsultation> {
     
     private Database database=new Database();
     private final String SQL_ALL="select * from specialite";
+    private final String SQL_BY_ID="select libelle from specialite where id=?";
 
     @Override
     public int insert(TypeConsultation ogj) {
@@ -60,6 +61,25 @@ public class TypeConsultationDao implements IDao<TypeConsultation> {
     @Override
     public TypeConsultation findById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public String findLibelleById(int id){
+        String libelle="";
+        try {
+            
+            database.openConnexion();
+            database.initPrepareStatement(SQL_BY_ID);
+            database.getPs().setInt(1,id);
+            ResultSet rs=database.executeSelect(SQL_BY_ID);
+            if(rs.next()){
+                libelle=rs.getString("libelle");
+            }
+                        
+        } catch (SQLException ex) {
+            Logger.getLogger(TypeConsultationDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            database.closeConnexion();
+        }
+        return libelle;
     }
     
 }
