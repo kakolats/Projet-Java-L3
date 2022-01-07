@@ -5,19 +5,24 @@
  */
 package services;
 
+import dao.ConsultationDao;
 import dao.MedecinDao;
 import dao.PatientDao;
+import dao.PrestationDao;
 import dao.RendezVousDao;
 import dao.TypeConsultationDao;
 import dao.TypePrestationDao;
 import dao.UserDao;
+import entities.Consultation;
 import entities.Medecin;
 import entities.Patient;
+import entities.Prestation;
 import entities.RendezVous;
 import entities.TypeConsultation;
 import entities.TypePrestation;
 import entities.TypeService;
 import entities.User;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +38,8 @@ public class Service implements IService {
     RendezVousDao daoRendezVous=new RendezVousDao();
     TypePrestationDao daoTypePrestation=new TypePrestationDao();
     TypeConsultationDao daoTypeConsultation=new TypeConsultationDao();
+    ConsultationDao daoConsultation=new ConsultationDao();
+    PrestationDao daoPrestation=new PrestationDao();
 
     @Override
     public User login(String login, String password) {
@@ -96,5 +103,29 @@ public class Service implements IService {
     public List<Medecin> showMedecinsByTypeConsultation(TypeService type) {
         return daoMedecin.findByTypeConsultation(type);
     }
-    
+
+    @Override
+    public int showConsutationsNumberByMedecin(int idMedecin,Date date) {
+        return daoConsultation.countByMedecin(idMedecin,date);
+    }
+
+    @Override
+    public int showPrestationNumberByDate(int idPrestation, Date date) {
+        return daoPrestation.countByType(idPrestation,date);
+    }
+
+    @Override
+    public int addConsultation(Consultation consultation) {
+        return daoConsultation.insert(consultation);
+    }
+
+    @Override
+    public int updateRendezVous(String statut,int idRdv) {
+        return daoRendezVous.update(statut,idRdv);
+    }
+
+    @Override
+    public int addPrestation(Prestation prestation) {
+        return daoPrestation.insert(prestation);
+    }
 }

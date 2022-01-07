@@ -26,6 +26,8 @@ public class RendezVousDao implements IDao<RendezVous> {
     private final String SQL_ALL_BY_ID_PATIENT="select * from rendez_vous where patient_id=?";
     private final String SQL_INSERT_PRESTATION="insert into rendez_vous (date,prestation_type_id,patient_id) values(?,?,?)";
     private final String SQL_INSERT_CONSULTATION="insert into rendez_vous (date,specialite_id,patient_id) values(?,?,?)";
+    private final String SQL_DELETE="delete * from rendz_vous where id=?";
+    private final String SQL_UPDATE="update rendez_vous SET statut=? where id=?";
 
     @Override
     public int insert(RendezVous rdv) {
@@ -71,6 +73,22 @@ public class RendezVousDao implements IDao<RendezVous> {
     public int update(RendezVous ogj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public int update(String statut,int idRdv){
+        int id=0;
+        try {
+            database.openConnexion();
+            database.initPrepareStatement(SQL_UPDATE);
+            database.getPs().setString(1,statut);
+            database.getPs().setInt(2,idRdv);
+            id=database.executeUpdate(SQL_UPDATE);
+        } catch (SQLException ex) {
+            Logger.getLogger(RendezVousDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            database.closeConnexion();
+        }
+        return id;
+    }
 
     @Override
     public int delete(int id) {
@@ -97,6 +115,9 @@ public class RendezVousDao implements IDao<RendezVous> {
                     typeS.setType("Prestation");
                     rdv.setTypeS(typeS);
                 }
+                Patient patient=new Patient(rs.getInt("patient_id"));
+                rdv.setPatient(patient);
+                rdv.setId(rs.getInt("id"));
                 rendezVous.add(rdv);
                 
             }  
@@ -144,5 +165,6 @@ public class RendezVousDao implements IDao<RendezVous> {
         
         return rendezVous;
     }
+    
     
 }

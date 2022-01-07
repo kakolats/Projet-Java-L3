@@ -38,21 +38,7 @@ public class RendezVous {
         this.patient = patient;
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     
     public RendezVous(String statut, Date date, TypeConsultation typeC, Patient patient) {
@@ -160,6 +146,11 @@ public class RendezVous {
 
     public void setTypeS(TypeService typeS) {
         this.typeS = typeS;
+    }
+
+    @Override
+    public String toString() {
+        return "RendezVous{" + "statut=" + statut + ", patient=" + patient.getId() + '}';
     }
     
     
