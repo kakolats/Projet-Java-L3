@@ -22,6 +22,7 @@ public class MedecinDao implements IDao<Medecin> {
 
     private final Database database=new Database();
     private final String SQL_ALL_BY_CONSULTATION="select * from user where specialite_id=?";
+    private final String SQL_BY_ID="select * from user where id=?";
     @Override
     public int insert(Medecin ogj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -44,7 +45,23 @@ public class MedecinDao implements IDao<Medecin> {
 
     @Override
     public Medecin findById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Medecin medecin=new Medecin();
+        try {
+            
+            database.openConnexion();
+            database.initPrepareStatement(SQL_BY_ID);
+            database.getPs().setInt(1,id);
+            ResultSet rs=database.executeSelect(SQL_BY_ID);
+            if(rs.next()){
+                medecin.setNomComplet(rs.getString("nom_complet"));
+            }            
+        } catch (SQLException ex) {
+            Logger.getLogger(MedecinDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            database.closeConnexion();
+        }
+        
+        return medecin;
     }
     
     public List<Medecin> findByTypeConsultation(TypeService type){

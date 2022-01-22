@@ -24,7 +24,7 @@ public class Gestion_clinique extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/views/v_validationRdv.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/views/v_connexion.fxml"));
         
         Scene scene = new Scene(root);
         

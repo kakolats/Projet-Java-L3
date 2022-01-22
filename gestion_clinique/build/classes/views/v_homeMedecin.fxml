@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="693.0" prefWidth="763.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.HomeMedecinController">
+   <children>
+      <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <AnchorPane prefHeight="58.0" prefWidth="677.0" style="-fx-background-color: #123456;" BorderPane.alignment="CENTER">
+               <children>
+                  <Text fill="WHITE" layoutX="279.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+         </top>
+         <left>
+            <AnchorPane prefHeight="442.0" prefWidth="163.0" style="-fx-background-color: #123456;" BorderPane.alignment="CENTER">
+               <children>
+                  <Button layoutY="81.0" mnemonicParsing="false" onAction="#handleDossierMedicaux" prefHeight="41.0" prefWidth="164.0" text="Dossiers medicaux">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Button fx:id="btnDeconnexion" layoutY="318.0" mnemonicParsing="false" onAction="#handleDeconnexion" prefHeight="41.0" prefWidth="164.0" text="Deconnexion">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button layoutY="20.0" mnemonicParsing="false" onAction="#handleListConsultations" prefHeight="41.0" prefWidth="164.0" text="Listes des consultations">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </left>
+         <center>
+            <AnchorPane fx:id="anchorContent" prefHeight="635.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

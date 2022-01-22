@@ -19,10 +19,22 @@ public class Consultation {
     private Medecin medecin;
     private Ordonnance ordonnance;
     private int specialite_id;
+    private String libelle;
+    private String statut;
+    private TypeService type;
+    private String constantes;
     
     public Consultation(){
         
     }
+
+    public Consultation(Date date, String statut, TypeService type) {
+        this.date = date;
+        this.statut = statut;
+        this.type = type;
+    }
+    
+    
 
     public Consultation(int id, Date date) {
         this.id = id;
@@ -35,6 +47,32 @@ public class Consultation {
         this.medecin = medecin;
         this.specialite_id = specialite_id;
     }
+
+    public Consultation(Date date, String statut, int specialite_id) {
+        this.date = date;
+        this.statut = statut;
+        this.specialite_id = specialite_id;
+    }
+
+    public String getLibelle() {
+        return libelle;
+    }
+
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
+    }
+
+    
+    
+    public String getStatut() {
+        return statut;
+    }
+
+    public void setStatut(String statut) {
+        this.statut = statut;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -82,6 +120,22 @@ public class Consultation {
 
     public void setSpecialite_id(int specialite_id) {
         this.specialite_id = specialite_id;
+    }
+
+    public TypeService getType() {
+        return type;
+    }
+
+    public void setType(TypeService type) {
+        this.type = type;
+    }
+
+    public String getConstantes() {
+        return constantes;
+    }
+
+    public void setConstantes(String constantes) {
+        this.constantes = constantes;
     }
     
     

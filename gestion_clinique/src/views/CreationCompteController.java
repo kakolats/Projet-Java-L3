@@ -7,15 +7,22 @@ package views;
 
 import entities.Patient;
 import entities.User;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import services.Service;
 
 /**
@@ -75,15 +82,26 @@ public class CreationCompteController implements Initializable {
                 txtError.setVisible(true);
             }else{
                 if(service.addPatient(user)!=0){
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Inscription");
-                    alert.setContentText("Inscription reussie ");
-                    alert.show();
+                    this.txtError.getScene().getWindow().hide();
+                    loadView("v_connexion");
                 }
             }
         }
     }
 
+    private void loadView(String view){
+        try {
+            AnchorPane root = null;
+            root = FXMLLoader.load(getClass().getResource("/views/"+view+".fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ConnexionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public CreationCompteController getCtrl() {
         return ctrl;
     }
@@ -99,6 +117,7 @@ public class CreationCompteController implements Initializable {
     public void setUser(Patient user) {
         this.user = user;
     }
+    
     
     
 }

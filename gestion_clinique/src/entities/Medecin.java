@@ -18,6 +18,11 @@ public class Medecin extends User {
         
     }
 
+    public Medecin(int id) {
+        super(id);
+    }
+    
+
     public Medecin(int id, String nomComplet) {
         super(id, nomComplet);
     }

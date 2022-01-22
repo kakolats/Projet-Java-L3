@@ -8,6 +8,7 @@ package dao;
 import entities.Patient;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +24,8 @@ public class PatientDao implements IDao<Patient> {
     private final String SQL_INSERT = "INSERT INTO `user` "
             + " ( `login`, `password`, `nom_complet`,`antecedents`,`role`) "
             + " VALUES ( ?,?,?,?,'ROLE_PATIENT')";
-    
+    private final String SQL_BY_ID="select * from user where id=?";
+    private final String SQL_ALL="select * from user where role='ROLE_PATIENT'";
     private final Database database=new Database();
     
     @Override
@@ -54,22 +56,53 @@ public class PatientDao implements IDao<Patient> {
 
     @Override
     public int update(Patient ogj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
+        //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public int delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
+        //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public List<Patient> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Patient> patients=new ArrayList<Patient>();
+        database.openConnexion();
+        database.initPrepareStatement(SQL_ALL);
+        ResultSet rs=database.executeSelect(SQL_ALL);
+        try {
+            while(rs.next()){
+                Patient pat=new Patient(rs.getInt("id"),rs.getString("nom_complet"));
+                patients.add(pat);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PatientDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        database.closeConnexion();
+        return patients;
     }
 
     @Override
     public Patient findById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Patient patient=new Patient(id);
+        System.out.println(id);
+        try {
+            database.openConnexion();
+            database.initPrepareStatement(SQL_BY_ID);
+            database.getPs().setInt(1,id);
+            ResultSet rs=database.executeSelect(SQL_BY_ID);
+            if(rs.next()){
+                patient.setNomComplet(rs.getString("nom_complet"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PatientDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            database.closeConnexion();
+        }
+        
+        return patient;         
     }
     
 }

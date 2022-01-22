@@ -2,15 +2,14 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #34EAE1;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="views.ConnexionController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #34EAE1;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.ConnexionController">
    <children>
       <TextField fx:id="txtfLogin" layoutX="190.0" layoutY="140.0" prefHeight="25.0" prefWidth="255.0" />
-      <TextField fx:id="txtfPasword" layoutX="190.0" layoutY="200.0" prefHeight="25.0" prefWidth="255.0" />
       <Label layoutX="98.0" layoutY="140.0" text="Login">
          <font>
             <Font size="16.0" />
@@ -35,5 +34,6 @@
             <Font size="14.0" />
          </font>
       </Label>
+      <PasswordField fx:id="txtfPassword" layoutX="190.0" layoutY="200.0" prefHeight="25.0" prefWidth="255.0" />
    </children>
 </AnchorPane>

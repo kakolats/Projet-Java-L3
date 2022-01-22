@@ -7,7 +7,9 @@ package services;
 
 import entities.Consultation;
 import entities.Medecin;
+import entities.Medicament;
 import entities.Patient;
+import entities.Prescription;
 import entities.Prestation;
 import entities.RendezVous;
 import entities.TypeConsultation;
@@ -34,6 +36,24 @@ public interface IService {
     public List<RendezVous> showAllRendezVousEnCours();
     public List<Medecin> showMedecinsByTypeConsultation(TypeService type);
     public int showConsutationsNumberByMedecin(int idMedecin,Date date);
+    public List<Consultation> showAllConsultationsByPatient(int idPatient);
+    public List<Prestation> showAllPrestationByPatient(int idPatient);
+    public List<Prestation> showAllPrestationByConsultation(int idConsultation);
     public int showPrestationNumberByDate(int idPrestation,Date date);
     public int addPrestation(Prestation prestation);
+    public int addPrestationWithoutDate(Prestation prestation);
+    public int addPrescription(Prescription prescription);
+    public List<Prescription> showPrescriptionsByConsultation(int consultationId);
+    public int finaliserConsultation(Consultation consultation);
+    public List<Prestation> showAllPrestationsByEtat(String etat);
+    public List<Consultation> showAllConsultationsByEtat(String statut,Medecin medecin);
+    public List<Prestation> showAllPrestationsWithoutDate();
+    public int setDatePrestation(Prestation prestation);
+    public int setAnnulationPrestation(Prestation prestation);
+    public int setResultatsPrestation(Prestation prestation);
+    public List<Medicament> showAllMedicaments();
+    public Medicament findMedicamentById(int idMedicament);
+    public List<Patient> findAllPatients();
+    
+    
 }

@@ -60,7 +60,7 @@ public class DemandeController implements Initializable {
         loadComboType(cboType);
         loadComboBoxTypeConsultation(cboTypeService);
         dateHandler(dfDate);
-        System.out.println(Date.valueOf(dfDate.getValue())==null);
+        //System.out.println(Date.valueOf(dfDate.getValue())==null);
     }  
     
     private void loadComboBoxTypePrestation(ComboBox<TypeService> cbo){

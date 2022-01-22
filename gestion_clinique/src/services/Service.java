@@ -7,7 +7,9 @@ package services;
 
 import dao.ConsultationDao;
 import dao.MedecinDao;
+import dao.MedicamentDao;
 import dao.PatientDao;
+import dao.PrescriptionDao;
 import dao.PrestationDao;
 import dao.RendezVousDao;
 import dao.TypeConsultationDao;
@@ -15,7 +17,9 @@ import dao.TypePrestationDao;
 import dao.UserDao;
 import entities.Consultation;
 import entities.Medecin;
+import entities.Medicament;
 import entities.Patient;
+import entities.Prescription;
 import entities.Prestation;
 import entities.RendezVous;
 import entities.TypeConsultation;
@@ -40,6 +44,8 @@ public class Service implements IService {
     TypeConsultationDao daoTypeConsultation=new TypeConsultationDao();
     ConsultationDao daoConsultation=new ConsultationDao();
     PrestationDao daoPrestation=new PrestationDao();
+    MedicamentDao daoMedicament=new MedicamentDao();
+    PrescriptionDao daoPrescription=new PrescriptionDao();
 
     @Override
     public User login(String login, String password) {
@@ -127,5 +133,132 @@ public class Service implements IService {
     @Override
     public int addPrestation(Prestation prestation) {
         return daoPrestation.insert(prestation);
+    }
+
+    @Override
+    public List<Consultation> showAllConsultationsByPatient(int idPatient) {
+        List<Consultation> consultations=daoConsultation.findByIdPatient(idPatient);
+        for(Consultation consul:consultations){
+            String libelle=daoTypeConsultation.findLibelleById(consul.getSpecialite_id());
+            consul.setLibelle(libelle);
+            Medecin med=daoMedecin.findById(consul.getMedecin().getId());
+            consul.getMedecin().setNomComplet(med.getNomComplet());
+        }
+        return consultations;
+    }
+
+    @Override
+    public List<Prestation> showAllPrestationByPatient(int idPatient) {
+        List<Prestation> prestations=daoPrestation.findByIdPatient(idPatient);
+        for(Prestation presta:prestations){
+            String libelle=daoTypePrestation.findLibelleById(presta.getType().getId());
+            presta.getType().setLibelle(libelle);
+        } 
+        return prestations;
+    }
+
+    @Override
+    public List<Prestation> showAllPrestationsByEtat(String etat) {
+        List<Prestation> prestations= daoPrestation.selectAllByEtat(etat);
+        for(Prestation presta:prestations){
+            Patient pat=daoPatient.findById(presta.getPatient().getId());
+            
+            presta.getPatient().setNomComplet(pat.getNomComplet());
+            String libelle=daoTypePrestation.findLibelleById(presta.getType().getId());
+            presta.getType().setLibelle(libelle);
+            //System.out.println("this bitch got me"+presta.getId());
+        }
+        return prestations;
+    }
+
+    @Override
+    public List<Prestation> showAllPrestationsWithoutDate() {
+        List<Prestation> prestations= daoPrestation.selectAllWithoutDate();
+        for(Prestation presta:prestations){
+            Patient pat=daoPatient.findById(presta.getPatient().getId());
+            
+            presta.getPatient().setNomComplet(pat.getNomComplet());
+            String libelle=daoTypePrestation.findLibelleById(presta.getType().getId());
+            presta.getType().setLibelle(libelle);
+            //System.out.println("this bitch got me"+presta.getId());
+        }
+        return prestations;
+    }
+
+    @Override
+    public int setDatePrestation(Prestation prestation) {
+        return daoPrestation.updateDate(prestation);
+    }
+
+    @Override
+    public int setAnnulationPrestation(Prestation prestation) {
+        return daoPrestation.updateAnnuler(prestation);
+    }
+
+    @Override
+    public int setResultatsPrestation(Prestation prestation) {
+        return daoPrestation.update(prestation);
+    }
+
+    @Override
+    public List<Consultation> showAllConsultationsByEtat(String statut, Medecin medecin) {
+        List<Consultation> consultations=daoConsultation.selectAllByEtat(statut, medecin);
+        for(Consultation consul:consultations){
+            Patient pat=daoPatient.findById(consul.getPatient().getId());
+            consul.getPatient().setNomComplet(pat.getNomComplet());
+            String libelle=daoTypeConsultation.findLibelleById(consul.getType().getId());
+            consul.getType().setLibelle(libelle);  
+        }
+        return consultations;
+    }
+
+    @Override
+    public List<Medicament> showAllMedicaments() {
+        return daoMedicament.findAll();
+    }
+
+    @Override
+    public int addPrestationWithoutDate(Prestation prestation) {
+        return daoPrestation.insertWithoutDate(prestation);
+    }
+
+    @Override
+    public int addPrescription(Prescription prescription) {
+        return daoPrescription.insert(prescription);
+    }
+
+    @Override
+    public int finaliserConsultation(Consultation consultation) {
+        return daoConsultation.update(consultation);
+    }
+
+    @Override
+    public List<Prestation> showAllPrestationByConsultation(int idConsultation) {
+        List<Prestation> prestations=daoPrestation.findByIdConsultation(idConsultation);
+        for(Prestation p:prestations){
+            String libelle=daoTypePrestation.findLibelleById(p.getType().getId());
+            p.getType().setLibelle(libelle);
+        }
+        return prestations;
+    }
+
+    @Override
+    public List<Prescription> showPrescriptionsByConsultation(int consultationId) {
+        List<Prescription> prescriptions=daoPrescription.findByConsultation(consultationId);
+        for(Prescription p:prescriptions){
+            Medicament medoc=daoMedicament.findById(p.getMedicament().getId());
+            p.getMedicament().setLibelle(medoc.getLibelle());
+        }
+        return prescriptions;
+    }
+
+    @Override
+    public Medicament findMedicamentById(int idMedicament) {
+        return daoMedicament.findById(idMedicament);
+    }
+
+    @Override
+    public List<Patient> findAllPatients() {
+        return daoPatient.findAll();
     }
 }

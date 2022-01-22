@@ -58,7 +58,7 @@ public class TypeService {
     
     @Override
     public String toString(){
-        return type+" "+libelle;
+        return libelle;
     }
     
 }

@@ -32,7 +32,7 @@
       </Text>
       <Button layoutX="199.0" layoutY="223.0" mnemonicParsing="false" onAction="#handleAnnulation" prefHeight="41.0" prefWidth="87.0" text="Annuler" />
       <Button layoutX="90.0" layoutY="223.0" mnemonicParsing="false" onAction="#handleValidation" prefHeight="41.0" prefWidth="87.0" text="Valider" />
-      <Text fill="#d70303" layoutX="181.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Validation de Consultation" wrappingWidth="228.861328125">
+      <Text fill="#d70303" layoutX="181.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Validation de Rendez-vous" wrappingWidth="228.861328125">
          <font>
             <Font size="18.0" />
          </font>

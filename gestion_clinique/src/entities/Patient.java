@@ -18,6 +18,10 @@ public class Patient extends User {
     public Patient(int id) {
         super(id);
     }
+
+    public Patient(int id, String nomComplet) {
+        super(id, nomComplet);
+    }
     
     
 
@@ -77,6 +81,11 @@ public class Patient extends User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return nomComplet; //To change body of generated methods, choose Tools | Templates.
     }
 
     

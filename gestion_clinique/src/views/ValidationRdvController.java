@@ -120,6 +120,7 @@ public class ValidationRdvController implements Initializable {
         }else{
             TypeService type=new TypeService(rdvSelected.getTypeS().getId());
             Prestation prestation=new Prestation(date,type);
+            prestation.setPatient(patient);
             service.addPrestation(prestation);
             service.updateRendezVous("VALIDE",rdvSelected.getId());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
