@@ -23,9 +23,9 @@
          <left>
             <AnchorPane prefHeight="346.0" prefWidth="128.0" style="-fx-background-color: #456666;" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" onAction="#handleLoadViewListePrestations" prefHeight="39.0" prefWidth="128.0" text="Lister les prestations" />
-                  <Button layoutY="56.0" mnemonicParsing="false" onAction="#handleLoadViewPrestartionDate" prefHeight="38.0" prefWidth="128.0" text="Prestations à Dater" />
-                  <Button fx:id="btnDeconnexion" layoutY="257.0" mnemonicParsing="false" onAction="#handleDeconnexion" prefHeight="45.0" prefWidth="128.0" text="Deconnexion" />
+                  <Button mnemonicParsing="false" onAction="#handleLoadViewListePrestations" prefHeight="39.0" prefWidth="128.0" style="-fx-background-color: #E7F9F8;" text="Lister les prestations" />
+                  <Button layoutY="56.0" mnemonicParsing="false" onAction="#handleLoadViewPrestartionDate" prefHeight="38.0" prefWidth="128.0" style="-fx-background-color: #E7F9F8;" text="Prestations à Dater" />
+                  <Button fx:id="btnDeconnexion" layoutY="257.0" mnemonicParsing="false" onAction="#handleDeconnexion" prefHeight="45.0" prefWidth="128.0" style="-fx-background-color: #E7F9F8;" text="Deconnexion" />
                </children>
             </AnchorPane>
          </left>

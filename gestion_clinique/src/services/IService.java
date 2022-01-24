@@ -46,7 +46,10 @@ public interface IService {
     public List<Prescription> showPrescriptionsByConsultation(int consultationId);
     public int finaliserConsultation(Consultation consultation);
     public List<Prestation> showAllPrestationsByEtat(String etat);
+    
     public List<Consultation> showAllConsultationsByEtat(String statut,Medecin medecin);
+    public List<Consultation> showAllConsultationsByDateDoctorAndEtat(String statut,Medecin medecin,Date date);
+    
     public List<Prestation> showAllPrestationsWithoutDate();
     public int setDatePrestation(Prestation prestation);
     public int setAnnulationPrestation(Prestation prestation);
@@ -54,6 +57,15 @@ public interface IService {
     public List<Medicament> showAllMedicaments();
     public Medicament findMedicamentById(int idMedicament);
     public List<Patient> findAllPatients();
+    
+    public int annulerConsultation(Consultation consultation);
+    
+    public List<User> showAllUsers();
+    
+    public User findUserByLogin(String login);
+    
+    public int addUser(User user);
+    public int addUserMedecin(User user,int spe_id);
     
     
 }

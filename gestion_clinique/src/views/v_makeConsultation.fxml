@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
@@ -10,22 +12,19 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="409.0" prefWidth="657.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.MakeConsultationController">
+<AnchorPane id="AnchorPane" prefHeight="409.0" prefWidth="657.0" style="-fx-background-color: #34EAE1;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.MakeConsultationController">
    <children>
       <Text layoutX="45.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Constantes">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="txtfTemp" layoutX="122.0" layoutY="91.0" prefHeight="25.0" prefWidth="46.0" />
-      <TextField fx:id="txtfMasse" layoutX="122.0" layoutY="126.0" prefHeight="25.0" prefWidth="46.0" />
-      <TextField fx:id="txtfTension" layoutX="122.0" layoutY="165.0" prefHeight="25.0" prefWidth="46.0" />
-      <Text layoutX="178.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C" />
-      <Text layoutX="175.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" />
-      <Text layoutX="178.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="U" />
-      <Text layoutX="37.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Temperature" />
-      <Text layoutX="45.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Masse" />
-      <Text layoutX="45.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tension" />
+      <TextField fx:id="txtfTemp" layoutX="39.0" layoutY="91.0" prefHeight="25.0" prefWidth="46.0" />
+      <TextField fx:id="txtfMasse" layoutX="120.0" layoutY="91.0" prefHeight="25.0" prefWidth="46.0" />
+      <TextField fx:id="txtfTension" layoutX="208.0" layoutY="91.0" prefHeight="25.0" prefWidth="46.0" />
+      <Text layoutX="95.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C" />
+      <Text layoutX="173.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kg" />
+      <Text layoutX="264.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="U" />
       <Text layoutX="471.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prescriptions">
          <font>
             <Font size="14.0" />
@@ -53,10 +52,12 @@
             <TableColumn fx:id="tblcLibelle" prefWidth="239.0" text="Libelle" />
          </columns>
       </TableView>
-      <Button layoutX="514.0" layoutY="329.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="98.0" text="Annuler">
+      <Button layoutX="514.0" layoutY="329.0" mnemonicParsing="false" onAction="#handleAnnulationPrestation" prefHeight="38.0" prefWidth="98.0" text="Annuler">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
+      <CheckBox fx:id="cbRdv" layoutX="50.0" layoutY="138.0" mnemonicParsing="false" text="Autre rendez_vous ?" />
+      <DatePicker fx:id="rdvDate" layoutX="33.0" layoutY="168.0" />
    </children>
 </AnchorPane>

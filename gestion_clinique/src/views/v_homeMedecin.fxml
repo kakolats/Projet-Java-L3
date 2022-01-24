@@ -10,7 +10,7 @@
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <AnchorPane prefHeight="58.0" prefWidth="677.0" style="-fx-background-color: #123456;" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="58.0" prefWidth="677.0" style="-fx-background-color: C4C4C4;" BorderPane.alignment="CENTER">
                <children>
                   <Text fill="WHITE" layoutX="279.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue">
                      <font>
@@ -21,18 +21,18 @@
             </AnchorPane>
          </top>
          <left>
-            <AnchorPane prefHeight="442.0" prefWidth="163.0" style="-fx-background-color: #123456;" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="442.0" prefWidth="163.0" style="-fx-background-color: #C4C4C4;" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutY="81.0" mnemonicParsing="false" onAction="#handleDossierMedicaux" prefHeight="41.0" prefWidth="164.0" text="Dossiers medicaux">
+                  <Button layoutY="81.0" mnemonicParsing="false" onAction="#handleDossierMedicaux" prefHeight="41.0" prefWidth="164.0" style="-fx-background-color: #E7F9F8;" text="Dossiers medicaux">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
-                  <Button fx:id="btnDeconnexion" layoutY="318.0" mnemonicParsing="false" onAction="#handleDeconnexion" prefHeight="41.0" prefWidth="164.0" text="Deconnexion">
+                  <Button fx:id="btnDeconnexion" layoutY="318.0" mnemonicParsing="false" onAction="#handleDeconnexion" prefHeight="41.0" prefWidth="164.0" style="-fx-background-color: #E7F9F8;" text="Deconnexion">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button layoutY="20.0" mnemonicParsing="false" onAction="#handleListConsultations" prefHeight="41.0" prefWidth="164.0" text="Listes des consultations">
+                  <Button layoutY="20.0" mnemonicParsing="false" onAction="#handleListConsultations" prefHeight="41.0" prefWidth="164.0" style="-fx-background-color: #E7F9F8;" text="Listes des consultations">
                      <font>
                         <Font size="14.0" />
                      </font>

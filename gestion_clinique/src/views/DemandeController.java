@@ -28,6 +28,7 @@ import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.text.Text;
 import services.Service;
+import utils.Util;
 
 /**
  * FXML Controller class
@@ -79,12 +80,15 @@ public class DemandeController implements Initializable {
     
     @FXML
     private void handleDemande(ActionEvent event) {
-        String type=cboType.getSelectionModel().getSelectedItem();
-        TypeService typeS=cboTypeService.getSelectionModel().getSelectedItem();
-        ZoneId defaultZoneId = ZoneId.systemDefault();
-        Date date = Date.valueOf(dfDate.getValue());
-        Patient patient=new Patient(ConnexionController.getCtrl().getUser().getId());
-        if(type.equals("Consultation")){
+        if(dfDate.getValue()==null){
+            Util.makeAlert("Veuillez selectionner une date");
+        }else{
+            String type=cboType.getSelectionModel().getSelectedItem();
+            TypeService typeS=cboTypeService.getSelectionModel().getSelectedItem();
+            ZoneId defaultZoneId = ZoneId.systemDefault();
+            Date date = Date.valueOf(dfDate.getValue());
+            Patient patient=new Patient(ConnexionController.getCtrl().getUser().getId());
+            if(type.equals("Consultation")){
             TypeConsultation typeC=new TypeConsultation(typeS.getId(),typeS.getLibelle());
             RendezVous rdv=new RendezVous(date,typeC,patient);
             service.addRendezVous(rdv);
@@ -92,15 +96,17 @@ public class DemandeController implements Initializable {
             alert.setTitle("Demande");
             alert.setContentText("Demande effectuee avec succes");
             alert.show();
-        }else if(type.equals("Prestation")){
-            TypePrestation typeP=new TypePrestation(typeS.getId(),typeS.getLibelle());
-            RendezVous rdv=new RendezVous(date,typeP,patient);
-            service.addRendezVous(rdv);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Demande");
-            alert.setContentText("Demande effectuee avec succes");
-            alert.show();
+            }else if(type.equals("Prestation")){
+                TypePrestation typeP=new TypePrestation(typeS.getId(),typeS.getLibelle());
+                RendezVous rdv=new RendezVous(date,typeP,patient);
+                service.addRendezVous(rdv);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Demande");
+                alert.setContentText("Demande effectuee avec succes");
+                alert.show();
+            }
         }
+        
         
         }
         

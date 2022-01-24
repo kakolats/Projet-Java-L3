@@ -23,11 +23,11 @@
          <left>
             <AnchorPane fx:id="btnDeconnexion" prefHeight="408.0" prefWidth="151.0" style="-fx-background-color: #456666;" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutX="1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handleLoadViewDemande" prefHeight="32.0" prefWidth="158.0" text="Demande de RDV" />
-                  <Button layoutX="1.0" layoutY="51.0" mnemonicParsing="false" onAction="#handleLoadViewListeRdv" prefHeight="32.0" prefWidth="157.0" text="Liste de Rdv" />
-                  <Button layoutX="1.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleLoadViewListeConsultations" prefHeight="32.0" prefWidth="158.0" text="Liste de consultations" />
-                  <Button layoutX="2.0" layoutY="197.0" mnemonicParsing="false" onAction="#handleDeconnexion" prefHeight="32.0" prefWidth="156.0" text="Deconnexion" />
-                  <Button layoutX="1.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleLoadViewListePrestations" prefHeight="32.0" prefWidth="158.0" text="Liste de prestations" />
+                  <Button layoutX="1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handleLoadViewDemande" prefHeight="32.0" prefWidth="158.0" style="-fx-background-color: #E7F9F8;" text="Demande de RDV" />
+                  <Button layoutX="1.0" layoutY="51.0" mnemonicParsing="false" onAction="#handleLoadViewListeRdv" prefHeight="32.0" prefWidth="157.0" style="-fx-background-color: #E7F9F8;" text="Liste de Rdv" />
+                  <Button layoutX="1.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleLoadViewListeConsultations" prefHeight="32.0" prefWidth="158.0" style="-fx-background-color: #E7F9F8;" text="Liste de consultations" />
+                  <Button layoutX="2.0" layoutY="197.0" mnemonicParsing="false" onAction="#handleDeconnexion" prefHeight="32.0" prefWidth="156.0" style="-fx-background-color: #E7F9F8;" text="Deconnexion" />
+                  <Button layoutX="1.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleLoadViewListePrestations" prefHeight="32.0" prefWidth="158.0" style="-fx-background-color: #E7F9F8;" text="Liste de prestations" />
                </children>
             </AnchorPane>
          </left>

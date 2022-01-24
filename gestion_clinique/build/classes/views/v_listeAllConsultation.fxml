@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,11 +10,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.ListeAllConsultationController">
+<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="703.0" style="-fx-background-color: #34EAE1;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.ListeAllConsultationController">
    <children>
-      <BorderPane prefHeight="640.0" prefWidth="703.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane prefHeight="640.0" prefWidth="703.0" style="-fx-background-color: #34EAE1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <AnchorPane prefHeight="295.0" prefWidth="703.0" style="-fx-background-color: #456789;" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="295.0" prefWidth="703.0" style="-fx-background-color: #34EAE1;" BorderPane.alignment="CENTER">
                <children>
                   <TableView fx:id="tblvConsultations" layoutX="46.0" layoutY="69.0" onMouseClicked="#handleSelectConsultation" prefHeight="149.0" prefWidth="632.0">
                      <columns>
@@ -29,7 +30,7 @@
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <Button layoutX="528.0" layoutY="232.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="123.0" text="Annuler">
+                  <Button fx:id="btnAnnulation" layoutX="528.0" layoutY="232.0" mnemonicParsing="false" onAction="#handleAnnulation" prefHeight="36.0" prefWidth="123.0" text="Annuler">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -44,11 +45,13 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
+                  <DatePicker fx:id="dateFilter" layoutX="46.0" layoutY="34.0" />
+                  <Button layoutX="229.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleSearchByDate" prefWidth="52.0" text="Search" />
                </children>
             </AnchorPane>
          </top>
          <bottom>
-            <AnchorPane fx:id="anchorContent" prefHeight="453.0" prefWidth="655.0" style="-fx-background-color: #123456;" BorderPane.alignment="CENTER" />
+            <AnchorPane fx:id="anchorContent" prefHeight="453.0" prefWidth="655.0" style="-fx-background-color: #34EAE1;" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
    </children>

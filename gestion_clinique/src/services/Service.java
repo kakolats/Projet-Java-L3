@@ -261,4 +261,41 @@ public class Service implements IService {
     public List<Patient> findAllPatients() {
         return daoPatient.findAll();
     }
+
+    @Override
+    public int annulerConsultation(Consultation consultation) {
+        return daoConsultation.updateAnnuler(consultation);
+    }
+
+    @Override
+    public List<User> showAllUsers() {
+        return daoUser.findAll();
+    }
+
+    @Override
+    public User findUserByLogin(String login) {
+        return daoUser.findUserByLogin(login);
+    }
+
+    @Override
+    public int addUser(User user) {
+        return daoUser.insert(user);
+    }
+
+    @Override
+    public int addUserMedecin(User user, int spe_id) {
+        return daoUser.insertUser(user, spe_id);
+    }
+
+    @Override
+    public List<Consultation> showAllConsultationsByDateDoctorAndEtat(String statut, Medecin medecin, Date date) {
+        List<Consultation> consultations=daoConsultation.selectByDateDoctorAndEtat(statut, medecin, date);
+        for(Consultation consul:consultations){
+            Patient pat=daoPatient.findById(consul.getPatient().getId());
+            consul.getPatient().setNomComplet(pat.getNomComplet());
+            String libelle=daoTypeConsultation.findLibelleById(consul.getType().getId());
+            consul.getType().setLibelle(libelle);  
+        }
+        return consultations;
+    }
 }

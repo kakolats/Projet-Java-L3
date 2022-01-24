@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 public class RendezVousDao implements IDao<RendezVous> {
     
     private final Database database=new Database();
-    private final String SQL_ALL_EN_COURS="select * from rendez_vous where statut='En Cours'";
+    private final String SQL_ALL_EN_COURS="select * from rendez_vous where statut='EN COURS'";
     private final String SQL_ALL_BY_ID_PATIENT="select * from rendez_vous where patient_id=?";
     private final String SQL_INSERT_PRESTATION="insert into rendez_vous (date,prestation_type_id,patient_id) values(?,?,?)";
     private final String SQL_INSERT_CONSULTATION="insert into rendez_vous (date,specialite_id,patient_id) values(?,?,?)";
@@ -67,8 +67,6 @@ public class RendezVousDao implements IDao<RendezVous> {
     }
     
     
-    
-
     @Override
     public int update(RendezVous ogj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

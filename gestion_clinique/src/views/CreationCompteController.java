@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -46,6 +47,8 @@ public class CreationCompteController implements Initializable {
     
     private CreationCompteController ctrl;
     private Patient user;
+    @FXML
+    private Button btnRetour;
 
     /**
      * Initializes the controller class.
@@ -77,7 +80,7 @@ public class CreationCompteController implements Initializable {
             txtError.setVisible(true);
         }else{
             
-            if(service.login(login,password)!=null){
+            if(service.findUserByLogin(login)!=null){
                 txtError.setText("Ce compte existe deja");
                 txtError.setVisible(true);
             }else{
@@ -116,6 +119,26 @@ public class CreationCompteController implements Initializable {
 
     public void setUser(Patient user) {
         this.user = user;
+    }
+
+    @FXML
+    private void handleRetour(ActionEvent event) {
+        AnchorPane root;
+        try
+        {
+            Stage stage = (Stage) btnRetour.getScene().getWindow();
+            stage.hide();
+            root = FXMLLoader.load(getClass().getResource("/views/v_connexion.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage1 =  new Stage();
+            stage1.setScene(scene);
+            stage1.show();
+                   
+        }
+        catch(Exception ex)
+        {
+            System.out.println(ex);
+        }
     }
     
     

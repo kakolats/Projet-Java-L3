@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="498.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.AdminController">
+   <children>
+      <Text layoutX="298.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des Users">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="cboRole" layoutX="67.0" layoutY="80.0" onAction="#handleActionRole" prefHeight="25.0" prefWidth="148.0" />
+      <Text layoutX="23.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ROLE" />
+      <TextField fx:id="txtfNomComplet" layoutX="103.0" layoutY="136.0" prefHeight="25.0" prefWidth="211.0" />
+      <TextField fx:id="txtfLogin" layoutX="88.0" layoutY="189.0" prefHeight="25.0" prefWidth="224.0" />
+      <Text layoutX="13.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom Complet" />
+      <Text layoutX="23.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="login" />
+      <Text layoutX="11.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="password" />
+      <Text layoutX="22.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="password Confirm" wrappingWidth="90.2138671875" />
+      <ComboBox fx:id="cboSpecialite" layoutX="88.0" layoutY="365.0" prefWidth="150.0" />
+      <Text layoutX="23.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="specialite" />
+      <PasswordField fx:id="txtfPassword" layoutX="89.0" layoutY="245.0" prefHeight="25.0" prefWidth="224.0" />
+      <PasswordField fx:id="txtfPasswordC" layoutX="89.0" layoutY="301.0" prefHeight="25.0" prefWidth="224.0" />
+      <TableView fx:id="tblvUsers" layoutX="359.0" layoutY="61.0" prefHeight="367.0" prefWidth="435.0">
+        <columns>
+          <TableColumn fx:id="tblcId" prefWidth="59.0" text="ID" />
+          <TableColumn fx:id="tblcLogin" prefWidth="119.0" text="login" />
+            <TableColumn fx:id="tblcNomComplet" minWidth="0.0" prefWidth="130.0" text="nomComplet" />
+            <TableColumn fx:id="tblcRole" prefWidth="125.0" text="Role" />
+        </columns>
+      </TableView>
+      <Button layoutX="25.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleAddUser" prefHeight="34.0" prefWidth="50.0" text="Add" />
+      <Button fx:id="btnDeconnexion" layoutX="670.0" layoutY="446.0" mnemonicParsing="false" onAction="#handleDeconnexion" prefHeight="34.0" prefWidth="110.0" text="Deconnexion" />
+   </children>
+</AnchorPane>

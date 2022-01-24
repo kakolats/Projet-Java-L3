@@ -32,6 +32,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import services.Service;
+import utils.Util;
 
 /**
  * FXML Controller class
@@ -81,7 +82,7 @@ public class ValidationRdvController implements Initializable {
         tblcDate.setCellValueFactory(new PropertyValueFactory<>("Date"));
         tblcStatut.setCellValueFactory(new PropertyValueFactory<>("statut"));
         tblcService.setCellValueFactory(new PropertyValueFactory<>("typeS"));
-         
+        numberRdv.setDisable(true);
         tblvRdv.setItems(obvRdv);
     }
 
@@ -98,13 +99,18 @@ public class ValidationRdvController implements Initializable {
 
     @FXML
     private void handleValidation(ActionEvent event) throws ParseException {
+        /*
         String date1=txtfDate.getText();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
         java.util.Date date2 = format.parse(date1); 
-        Date date = new Date(date2.getTime()); 
+        Date date = new Date(date2.getTime()); */
         //System.out.println(txtfType.getText());
+        Date date=rdvSelected.getDate();
         int typeId=rdvSelected.getTypeS().getId();
         Patient patient=new Patient(rdvSelected.getPatient().getId());
+        if(Integer.parseInt(numberRdv.getText())==5){
+            Util.makeAlert("Ce medecin ou cette prestation est overbooké pour ce jour");
+        }
         if(txtfType.getText().startsWith("Consultation")){
             //System.out.println(rdvSelected.getPatient().getId());
             Medecin medecin=cboMedecin.getSelectionModel().getSelectedItem();

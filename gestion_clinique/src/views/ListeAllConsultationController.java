@@ -12,6 +12,7 @@ import entities.TypeService;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -24,6 +25,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -63,6 +65,10 @@ public class ListeAllConsultationController implements Initializable {
     private Button btnDetails;
     @FXML
     private Button btnMakeConsultation;
+    @FXML
+    private Button btnAnnulation;
+    @FXML
+    private DatePicker dateFilter;
 
     /**
      * Initializes the controller class.
@@ -156,6 +162,26 @@ public class ListeAllConsultationController implements Initializable {
     private void handleDetails(ActionEvent event) {
         if(consultationSelected!=null){
             loadView("v_detailsConsultation");
+        }
+    }
+
+    @FXML
+    private void handleAnnulation(ActionEvent event) {
+        if(consultationSelected!=null){
+            service.annulerConsultation(consultationSelected);
+            Util.makeAlert("Consultation annulee avec succes");
+        }
+    }
+
+    @FXML
+    private void handleSearchByDate(ActionEvent event) {
+        LocalDate date=dateFilter.getValue();
+        if(date==null){
+            Util.makeAlert("Veuillez entrer une date");
+        }else{
+            String etat=cboFiltre.getSelectionModel().getSelectedItem();
+            loadTableView(service.showAllConsultationsByDateDoctorAndEtat(etat, medecin,Date.valueOf(date)));
+         
         }
     }
     

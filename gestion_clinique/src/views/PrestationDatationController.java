@@ -67,6 +67,7 @@ public class PrestationDatationController implements Initializable {
         btnPlanifier.setDisable(true);
         Util.dateHandler(datePick);
         datePick.setValue(LocalDate.now());
+        numberRdv.setVisible(false);
     }   
     
     public void loadTableView(List<Prestation> prestations){
@@ -82,8 +83,9 @@ public class PrestationDatationController implements Initializable {
         dateSelected=Date.valueOf(datePick.getValue());
         //int id=prestationSelected.getId();
         //System.out.println(id); 
-        countP=service.showPrestationNumberByDate(prestationSelected.getType().getId(),dateSelected);
-        if(countP>4){
+        countP=service.showPrestationNumberByDate(prestationSelected.getId(),dateSelected);
+        
+        if(countP==5){
             
         }else{
             Prestation presta=new Prestation(prestationSelected.getId(),dateSelected);
@@ -114,10 +116,8 @@ public class PrestationDatationController implements Initializable {
     private void handleDatePicking(InputMethodEvent event) {
         if(datePick.getValue()!=null){
             dateSelected=Date.valueOf(datePick.getValue());
-            System.out.println(dateSelected);
-            System.out.println(prestationSelected.getType().getId());
-            //countP=service.showPrestationNumberByDate(prestationSelected.getType().getId(),dateSelected);
-            //numberRdv.setText(String.valueOf(countP));
+            countP=service.showPrestationNumberByDate(prestationSelected.getId(),dateSelected);
+            numberRdv.setText(String.valueOf(countP));
         }
     }
     

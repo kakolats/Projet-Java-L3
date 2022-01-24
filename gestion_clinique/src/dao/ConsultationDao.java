@@ -31,6 +31,8 @@ public class ConsultationDao implements IDao<Consultation> {
             + "'EN ATTENTE')";
     private final String SQL_ALL_BY_ETAT="select * from consultation where statut=? and medecin_id=?";
     private final String SQL_UPDATE="update consultation set constantes=?,statut='TERMINE' where id=?";
+    private final String SQL_UPDATE_ANNULE="update consultation set statut='ANNULE' where id=?";
+    private final String SQL_ALL_BY_DATE="select * from consultation where statut=? and medecin_id=? and date=?";
     
     
     public int countByMedecin(int idMedecin,Date date){
@@ -119,8 +121,38 @@ public class ConsultationDao implements IDao<Consultation> {
                 Consultation consultation=new Consultation(rs.getDate("date"),rs.getString("statut"),type);
                 Patient patient=new Patient(rs.getInt("patient_id"));
                 if(consultation.getStatut().equals("TERMINE")){
-                    consultation.setConstantes(rs.getString("constantes"));
+                    consultation.setConstantes(rs.getString("constantes"));  
                 }
+                consultation.setSpecialite_id(rs.getInt("specialite_id"));
+                consultation.setPatient(patient);
+                consultation.setId(rs.getInt("id"));
+                consultations.add(consultation);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PrestationDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            database.closeConnexion();
+        }
+        return consultations;
+    }
+    
+    public List<Consultation> selectByDateDoctorAndEtat(String statut,Medecin medecin,Date date){
+        List<Consultation> consultations= new ArrayList<Consultation>();
+        try {
+            database.openConnexion();
+            database.initPrepareStatement(SQL_ALL_BY_DATE);
+            database.getPs().setString(1,statut);
+            database.getPs().setInt(2,medecin.getId());
+            database.getPs().setDate(3,date);
+            ResultSet rs=database.executeSelect(SQL_ALL_BY_DATE);
+            while(rs.next()){
+                TypeService type=new TypeService(rs.getInt("specialite_id"));
+                Consultation consultation=new Consultation(rs.getDate("date"),rs.getString("statut"),type);
+                Patient patient=new Patient(rs.getInt("patient_id"));
+                if(consultation.getStatut().equals("TERMINE")){
+                    consultation.setConstantes(rs.getString("constantes"));  
+                }
+                consultation.setSpecialite_id(rs.getInt("specialite_id"));
                 consultation.setPatient(patient);
                 consultation.setId(rs.getInt("id"));
                 consultations.add(consultation);
@@ -155,6 +187,21 @@ public class ConsultationDao implements IDao<Consultation> {
         return id;
     }
 
+    public int updateAnnuler(Consultation consultation){
+        int id=0;
+        
+        try {
+            database.openConnexion();
+            database.initPrepareStatement(SQL_UPDATE_ANNULE);
+            database.getPs().setInt(1,consultation.getId());
+            id=database.executeUpdate(SQL_UPDATE_ANNULE);
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultationDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        database.closeConnexion();
+        return id;
+    }
+    
     @Override
     public int delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package utils;
 
 /**
  *
  * @author HP
  */
-public class DossierMedicalDao {
+public class Validator {
     
+    public static boolean isNumeric(String str){
+        return str.matches("-?\\d+(\\.\\d+)?");
+    }
 }

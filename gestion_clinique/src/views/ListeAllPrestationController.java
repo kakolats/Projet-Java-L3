@@ -120,7 +120,7 @@ public class ListeAllPrestationController implements Initializable {
     private void handleSelectPrestation(MouseEvent event) {
         prestationSelected=tblvPrestations.getSelectionModel().getSelectedItem();
         if(prestationSelected!=null){
-            txtPatient.setText(String.valueOf(prestationSelected.getPatient().getId()));
+            txtPatient.setText(String.valueOf(prestationSelected.getPatient().getNomComplet()));
             if(prestationSelected.getEtat().equals("EN ATTENTE")){
                 btnSave.setDisable(false);
                 btnAnnulation.setDisable(false);

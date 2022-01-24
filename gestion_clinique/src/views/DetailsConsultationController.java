@@ -57,21 +57,21 @@ public class DetailsConsultationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         // TODO
-        if(ListeAllConsultationController.getCtrl().getConsultationSelected()!=null){
+        if(ListeAllConsultationController.getCtrl()!=null){
             Consultation cns=ListeAllConsultationController.getCtrl().getConsultationSelected();
             txtAConstantes.setText(cns.getConstantes());
             txtAConstantes.setDisable(true);
             loadTableViewPrestations(service.showAllPrestationByConsultation(cns.getId()));
             loadTableViewPrescriptions(service.showPrescriptionsByConsultation(cns.getId()));
         }else{
-            if(DossierMedicalController.getCtrl().getConsultationSelected()!=null){
+            if(DossierMedicalController.getCtrl()!=null){
                 Consultation cna=DossierMedicalController.getCtrl().getConsultationSelected();
                 txtAConstantes.setText(cna.getConstantes());
                 txtAConstantes.setDisable(true);
                 loadTableViewPrestations(service.showAllPrestationByConsultation(cna.getId()));
                 loadTableViewPrescriptions(service.showPrescriptionsByConsultation(cna.getId()));
             }else{
-                if(ListeConsultationController.getCtrl().getConsultationSelected()!=null){
+                if(ListeConsultationController.getCtrl()!=null){
                     Consultation cnx=ListeConsultationController.getCtrl().getConsultationSelected();
                     txtAConstantes.setText(cnx.getConstantes());
                     txtAConstantes.setDisable(true);

@@ -94,6 +94,10 @@ public class ConnexionController implements Initializable {
                     this.txtError.getScene().getWindow().hide();
                     loadView("v_homeSecretaire");
                 }
+                if(user.getRole().equals("ROLE_ADMIN")){
+                    this.txtError.getScene().getWindow().hide();
+                    loadView("v_admin");
+                }
                 
             }
         }
